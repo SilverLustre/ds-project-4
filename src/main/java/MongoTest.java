@@ -8,6 +8,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -32,7 +33,15 @@ public class MongoTest {
                 System.out.println("1. Add a string to the MongoDB collection");
                 System.out.println("2. Print all strings in the MongoDB collection");
                 System.out.println("3. Close the connection and exit");
-                int select = in.nextInt();
+                int select = -1;
+                try {
+                    select = in.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input, please try again.");
+                    in.nextLine();
+                    continue;
+                }
+
                 if (select == 1) {
                     System.out.println("Please input the string to be added:");
                     in.nextLine();
