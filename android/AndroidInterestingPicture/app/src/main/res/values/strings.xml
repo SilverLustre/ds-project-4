@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FDD: Find Dictionary Definition</string>
+    <string name="hello">Type a keyword to search for the definition of the word.</string>
+    <string name="action_settings">Action</string>
+</resources>
