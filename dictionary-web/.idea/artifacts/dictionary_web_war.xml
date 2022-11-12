@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dictionary-web:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>dictionary-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="dictionary-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="dictionary-web:war exploded" />
+    </root>
+  </artifact>
+</component>
