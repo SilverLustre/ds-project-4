@@ -25,15 +25,17 @@ public class DictionaryAPICaller {
     // only one client, singleton, better puts it in a factory,
     // multiple instances will create more memory.
     private OkHttpClient httpClient;
+    private String owlbotToken;
 
     public DictionaryAPICaller() {
         httpClient = new OkHttpClient();
+        owlbotToken = System.getenv("OWLBOT_TOKEN");
     }
 
     public QueryResult sendGetURL(String url) {
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Authorization", "Token 4cc71b234ded51f7265672fc7060445954125471")  // add request headers
+                .addHeader("Authorization", owlbotToken)  // add request headers
                 .build();
         String json = null;
         try (Response response = httpClient.newCall(request).execute()) {
@@ -54,7 +56,6 @@ public class DictionaryAPICaller {
             JsonObject responseObj = new JsonObject();
             responseObj.addProperty("definition", definition);
             responseObj.addProperty("image_url", imageUrl);
-//            return responseObj.toString();
             return new QueryResult(json, responseObj.toString());
         } catch (java.net.UnknownHostException e) {
             e.printStackTrace();
@@ -63,8 +64,6 @@ public class DictionaryAPICaller {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//        return new JsonObject().toString();
         return new QueryResult(json, new JsonObject().toString());
     }
 

@@ -32,7 +32,7 @@ import java.io.IOException;
 
 @WebServlet(name = "dashboardServlet", value = "/dashboard")
 public class DashboardServlet extends HttpServlet {
-    MongoDatabase database;
+    private MongoDatabase database;
 
     public void init() {
         String mongoPass = System.getenv("MONGO_PASS");
@@ -48,7 +48,7 @@ public class DashboardServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Document> aggregatedLog = getAggregatedLog(20);
+        List<Document> aggregatedLog = getAggregatedLog();
         List<Document> topModel = getTopModel(5);
         List<Document> topInput = getTopInput(10);
         double durationAvg = getDurationAvg();

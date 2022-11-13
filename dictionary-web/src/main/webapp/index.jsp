@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Find Dictionary Definition Backend Service</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Find Dictionary Definition Backend Service" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="dashboard">Dashboard</a>
 </body>
 </html>

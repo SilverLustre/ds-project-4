@@ -13,24 +13,25 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
     <script>
-        function check(){
+        function check() {
             window.setTimeout(function () {
                 window.location.reload();
             }, 5000);
         }
 
-        function uncheck(){
+        function uncheck() {
             // Reference https://stackoverflow.com/questions/8860188/javascript-clear-all-timeouts
-            var id = window.setTimeout(function() {}, 0);
+            var id = window.setTimeout(function () {
+            }, 0);
             while (id--) {
                 window.clearTimeout(id);
             }
         }
 
-        function checkChange(checkBox){
-            if (checkBox.checked){
+        function checkChange(checkBox) {
+            if (checkBox.checked) {
                 check()
-            }else{
+            } else {
                 uncheck()
             }
         }
@@ -59,7 +60,7 @@
 <h2>Average Processing Time for Each Request</h2>
 <%= durationAvg + " second(s)" %>
 
-<h2>Latest 20 Operation Logs</h2>
+<h2>Operation Logs</h2>
 <table class="table-style">
     <thead>
     <tr>
@@ -90,23 +91,23 @@
     <tr>
         <td><%= doc.get("_id") %>
         </td>
-        <td><%= doc.get("start_time") %>
+        <td><%= doc.getOrDefault("start_time", "") %>
         </td>
-        <td><%= doc.get("end_time") %>
+        <td><%= doc.getOrDefault("end_time", "") %>
         </td>
-        <td><%= doc.get("duration") %>
+        <td><%= doc.getOrDefault("duration", "") %>
         </td>
-        <td><%= doc.get("request_from_user", Document.class).get("input") %>
+        <td><%= doc.get("request_from_user", Document.class).getOrDefault("input", "") %>
         </td>
-        <td><%= doc.get("request_from_user", Document.class).get("model") %>
+        <td><%= doc.get("request_from_user", Document.class).getOrDefault("model", "") %>
         </td>
-        <td><%= doc.get("request_to_api", Document.class).get("get_url") %>
+        <td><%= doc.get("request_to_api", Document.class).getOrDefault("get_url", "") %>
         </td>
         <td><%= doc.get("response_from_api", Document.class).toJson() %>
         </td>
-        <td><%= doc.get("response_to_user", Document.class).get("formatted", Document.class).get("definition") %>
+        <td><%= doc.get("response_to_user", Document.class).get("formatted", Document.class).getOrDefault("definition", "") %>
         </td>
-        <td><%= doc.get("response_to_user", Document.class).get("formatted", Document.class).get("image_url") %>
+        <td><%= doc.get("response_to_user", Document.class).get("formatted", Document.class).getOrDefault("image_url", "") %>
         </td>
     </tr>
     <%}%>
