@@ -80,10 +80,8 @@ public class DictionaryServlet extends HttpServlet {
                             .append("model", model))
                     .append("request_to_api", new Document()
                             .append("get_url", url))
-                    .append("response_from_api", new Document()
-                            .append("origin", Document.parse(queryResult.origin)))
-                    .append("response_to_user", new Document()
-                            .append("formatted", Document.parse(queryResult.formatted)))
+                    .append("response_from_api",Document.parse(queryResult.origin))
+                    .append("response_to_user", Document.parse(queryResult.formatted))
             );
             out.println(queryResult.formatted);
         }

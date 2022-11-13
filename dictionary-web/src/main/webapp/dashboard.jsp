@@ -105,9 +105,9 @@
         </td>
         <td><%= doc.get("response_from_api", Document.class).toJson() %>
         </td>
-        <td><%= doc.get("response_to_user", Document.class).get("formatted", Document.class).getOrDefault("definition", "") %>
+        <td><%= doc.get("response_to_user", Document.class).getOrDefault("definition", "") %>
         </td>
-        <td><%= doc.get("response_to_user", Document.class).get("formatted", Document.class).getOrDefault("image_url", "") %>
+        <td><%= doc.get("response_to_user", Document.class).getOrDefault("image_url", "") %>
         </td>
     </tr>
     <%}%>
