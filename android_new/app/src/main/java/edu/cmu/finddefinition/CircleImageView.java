@@ -14,14 +14,22 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
-
+/**
+ * Author: Zhongyue Zhang(zhongyue)
+ * Last Modified: Nov 12, 2022
+ *
+ * This class define the format of picture
+ * which could format the picture into a circle
+ *
+ * Refer: https://blog.csdn.net/u013926110/article/details/44101191?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161656898616780357275956%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=161656898616780357275956&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~hot_rank-19-44101191.first_rank_v2_pc_rank_v29&utm_term=android%E5%AF%BC%E5%85%A5%E5%9B%BE%E7%89%87%E5%8F%98%E6%88%90%E5%9C%86%E5%BD%A2
+ */
 public class CircleImageView extends androidx.appcompat.widget.AppCompatImageView {
 
-    //画笔
+    //paint
     private Paint mPaint;
-    //圆形图片的半径
+    //the radius of circle
     private int mRadius;
-    //图片的宿放比例
+    //scale ratio
     private float mScale;
 
     public CircleImageView(Context context) {
@@ -39,7 +47,7 @@ public class CircleImageView extends androidx.appcompat.widget.AppCompatImageVie
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //由于是圆形，宽高应保持一致
+        //get the height and width equal
         int size = Math.min(getMeasuredWidth(), getMeasuredHeight());
         mRadius = size / 2;
         setMeasuredDimension(size, size);
@@ -56,16 +64,16 @@ public class CircleImageView extends androidx.appcompat.widget.AppCompatImageVie
         if (null != drawable) {
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 
-            //初始化BitmapShader，传入bitmap对象
+            //initial BitmapShader
             BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-            //计算缩放比例
+            //calculate scale ratio
             mScale = (mRadius * 2.0f) / Math.min(bitmap.getHeight(), bitmap.getWidth());
 
             Matrix matrix = new Matrix();
             matrix.setScale(mScale, mScale);
             bitmapShader.setLocalMatrix(matrix);
             mPaint.setShader(bitmapShader);
-            //画圆形，指定好坐标，半径，画笔
+            //draw circle
             canvas.drawCircle(mRadius, mRadius, mRadius, mPaint);
         } else {
             super.onDraw(canvas);

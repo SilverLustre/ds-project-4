@@ -25,23 +25,31 @@ import java.net.URLConnection;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
-/*
- * This class provides capabilities to search for an image on Flickr.com given a search term.  The method "search" is the entry to the class.
- * Network operations cannot be done from the UI thread, therefore this class makes use of inner class BackgroundTask that will do the network
- * operations in a separate worker thread.  However, any UI updates should be done in the UI thread so avoid any synchronization problems.
+/**
+ * Author: Zhongyue Zhang(zhongyue)
+ * Last Modified: Nov 12, 2022
+ *
+ * This class provides capabilities to search for an image
+ * as well as the dictionary definition for a given search term
+ * The method search is the entry to the class
+ * Network operations cannot be done from the UI thread,
+ * therefore this class makes use of inner class BackgroundTask that
+ * will do the network operation in a separate worker thread.
+ * However, any UI updates should be done in the UI thread to avoid any synchronization
+ * problems
  * onPostExecution runs in the UI thread, and it calls the ImageView pictureReady method to do the update.
  *
  * Method BackgroundTask.doInBackground( ) does the background work
  * Method BackgroundTask.onPostExecute( ) is called when the background work is
  *    done; it calls *back* to ip to report the results
- *
+
  */
+
 public class GetDefinition{
     FindDefinition ip = null;   // for callback
-    String searchTerm = null;       // search Flickr for this word
-    Bitmap picture = null;
-    String definition = null;
+    String searchTerm = null;   // search word
+    Bitmap picture = null;      // return picture
+    String definition = null;   // return definition
 
     // search( )
     // Parameters:
@@ -63,6 +71,7 @@ public class GetDefinition{
         }
 
         public JSONObject getResult(String searchTerm) throws JSONException {
+            //get the jsonObject from the given search term
             String pictureURL = null;
             String model = Build.MANUFACTURER;
             String HTTP_LINK = String.format("http://192.168.1.60:8080/dictionary-web-1.0-SNAPSHOT/dictionary?model=%s&input=%s", model, searchTerm);
@@ -176,20 +185,6 @@ public class GetDefinition{
 
         }
 
-        /*
-         * Given a url that will request XML, return a Document with that XML, else null
-         */
-        private Document getRemoteXML(String url) {
-            try {
-                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                InputSource is = new InputSource(url);
-                return db.parse(is);
-            } catch (Exception e) {
-                System.out.print("Yikes, hit the error: " + e);
-                return null;
-            }
-        }
 
         /*
          * Given a URL referring to an image, return a bitmap of that image

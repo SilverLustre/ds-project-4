@@ -7,6 +7,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+/**
+ * Author: Zhongyue Zhang(zhongyue)
+ * Last Modified: Nov 12, 2022
+ * It will conduct the interaction with the UI thread
+
+ */
 public class FindDefinition extends AppCompatActivity{
 
     FindDefinition me = this;
@@ -16,8 +22,9 @@ public class FindDefinition extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         /*
-         * The click listener will need a reference to this object, so that upon successfully finding a picture from Flickr, it
-         * can callback to this object with the resulting picture Bitmap.  The "this" of the OnClick will be the OnClickListener, not
+         * The click listener will need a reference to this object, so that upon successfully finding a picture, it
+         * can callback to this object with the resulting picture Bitmap.
+         * The "this" of the OnClick will be the OnClickListener, not
          * this InterestingPicture.
          */
         final FindDefinition ma = this;
@@ -40,7 +47,9 @@ public class FindDefinition extends AppCompatActivity{
     }
 
     /*
-     * This is called by the GetPicture object when the picture is ready.  This allows for passing back the Bitmap picture for updating the ImageView
+     * This is called by the GetDefinition object when the picture is ready.
+     * This allows for passing back the Bitmap picture for updating the ImageView
+     * as well as updating the definition TextView
      */
     public void pictureReady(Bitmap picture, String definition) {
         ImageView pictureView = (ImageView)findViewById(R.id.FindDefinition);
