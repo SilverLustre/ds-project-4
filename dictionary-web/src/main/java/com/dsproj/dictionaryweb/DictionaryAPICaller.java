@@ -57,14 +57,16 @@ public class DictionaryAPICaller {
             responseObj.addProperty("definition", definition);
             responseObj.addProperty("image_url", imageUrl);
             return new QueryResult(json, responseObj.toString());
-        } catch (java.net.UnknownHostException e) {
+        }catch (com.google.gson.JsonSyntaxException e){
+            e.printStackTrace();
+        }catch (java.net.UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new QueryResult(json, new JsonObject().toString());
+        return new QueryResult(new JsonObject().toString(), new JsonObject().toString());
     }
 
     public QueryResult sendGet(String input) {

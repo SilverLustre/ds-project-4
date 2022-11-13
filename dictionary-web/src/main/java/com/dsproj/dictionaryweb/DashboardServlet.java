@@ -94,7 +94,10 @@ public class DashboardServlet extends HttpServlet {
         Bson group = group(null, avg("duration_avg", "$duration"));
         List<Document> res = log.aggregate(Arrays.asList(group)).into(new ArrayList<>());
         System.out.println(res);
-        double durationAvg = res.get(0).getDouble("duration_avg");
+        double durationAvg = 0;
+        if (res.size() > 0) {
+            durationAvg = res.get(0).getDouble("duration_avg");
+        }
         System.out.println("durationAvg:" + durationAvg);
         return durationAvg;
     }
