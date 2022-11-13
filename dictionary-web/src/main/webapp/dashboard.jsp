@@ -21,8 +21,7 @@
 
         function uncheck() {
             // Reference https://stackoverflow.com/questions/8860188/javascript-clear-all-timeouts
-            var id = window.setTimeout(function () {
-            }, 0);
+            var id = window.setTimeout(function () {}, 0);
             while (id--) {
                 window.clearTimeout(id);
             }
