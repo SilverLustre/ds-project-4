@@ -1,0 +1,13 @@
+.table-style {
+    width: max-content;
+}
+
+
+.table-style, .table-style * {
+    border: 1px solid;
+}
+
+tbody * {
+    vertical-align: top;
+    text-align: left;
+}
