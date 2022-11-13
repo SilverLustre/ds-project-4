@@ -74,7 +74,7 @@ public class GetDefinition{
             //get the jsonObject from the given search term
             String pictureURL = null;
             String model = Build.MANUFACTURER;
-            String HTTP_LINK = String.format("http://192.168.1.60:8080/dictionary-web-1.0-SNAPSHOT/dictionary?model=%s&input=%s", model, searchTerm);
+            String HTTP_LINK = String.format("https://tranquil-tundra-69502.herokuapp.com/dictionary?model=%s&input=%s", model, searchTerm);
 
             HttpURLConnection connection = null;
             BufferedReader reader = null;
